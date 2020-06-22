@@ -33,7 +33,7 @@ pipeline
             {
                script
                {
-                  common.clone_standalone_dir("${env.directory}","${env.credendtials}")
+                  common.clone_git_repository("${env.directory}","${env.credendtials}")
                }
             }
         }
@@ -46,7 +46,7 @@ pipeline
                  cmd_passed = common.check_passed("${env.directory}")
                  if ( !cmd_passed ){
 							// this fails pipeline stage
-                    error( "Bigsql Service is NOT Ready" )
+                    error( "Service is NOT Ready" )
               }
            }
         }
