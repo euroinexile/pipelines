@@ -10,6 +10,7 @@ pipeline
     agent {
         label "${env.HOSTNAME}"
     }
+	
     stages
     {
         stage("Set  Build Name")
@@ -25,7 +26,7 @@ pipeline
                     env.directory = "/git/testing"
 						             }
             }
-        }
+        } // End Build Stage
 
         stage("clone a git dir")
         {
@@ -36,8 +37,9 @@ pipeline
                   common.clone_git_repository("${env.directory}","${env.credendtials}")
                }
             }
-        }
-		stage("call a shell script that returns a boolean")
+        } // End Clone Stage
+	    
+	stage("call a shell script that returns a boolean")
         {
            steps
            {
@@ -49,8 +51,11 @@ pipeline
                     error( "Service is NOT Ready" )
               }
            }
-        }
-}
+        } // End script stage
+		
+    } // End stages
+
+} // Ends pipeline
 
 
 
